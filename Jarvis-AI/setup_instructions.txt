@@ -1,0 +1,231 @@
+================================================================================
+                    JARVIS AI ASSISTANT - SETUP INSTRUCTIONS
+================================================================================
+
+QUICK START GUIDE
+================================================================================
+
+1. PREREQUISITES
+   - Python 3.8 or higher installed
+   - pip package manager
+   - Microphone and speakers connected
+   - Internet connection for AI features
+
+2. INSTALLATION STEPS
+
+   Option A: Automated Setup (Recommended)
+   ----------------------------------------
+   a) Navigate to the JARVIS-AI directory
+   b) Run: python setup.py
+   c) Follow the on-screen prompts
+   d) Configure API keys when prompted
+
+   Option B: Manual Setup
+   ----------------------
+   a) Install dependencies:
+      pip install -r requirements.txt
+
+   b) Create directories (if not exist):
+      - config/
+      - func/basic/
+      - logs/
+      - data/
+
+   c) Configure config/config.json with your API keys
+
+3. PLATFORM-SPECIFIC SETUP
+
+   WINDOWS
+   -------
+   - PyAudio Installation:
+     1. Download wheel file from:
+        https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
+     2. Choose file matching your Python version (e.g., cp38 for Python 3.8)
+     3. Install: pip install PyAudio-0.2.11-cp38-cp38-win_amd64.whl
+
+   - If microphone access issues occur:
+     Settings > Privacy > Microphone > Allow desktop apps
+
+   macOS
+   -----
+   - Install portaudio:
+     brew install portaudio
+
+   - Install PyAudio:
+     pip install pyaudio
+
+   - Grant microphone permissions:
+     System Preferences > Security & Privacy > Microphone
+
+   LINUX (Ubuntu/Debian)
+   ---------------------
+   - Install system dependencies:
+     sudo apt-get update
+     sudo apt-get install python3-pyaudio portaudio19-dev
+     sudo apt-get install espeak libespeak-dev
+     sudo apt-get install python3-dev
+
+   - Install Python packages:
+     pip install -r requirements.txt
+
+4. API CONFIGURATION
+
+   Google Gemini API (Recommended for AI features)
+   -----------------------------------------------
+   1. Visit: https://makersuite.google.com/app/apikey
+   2. Sign in with Google account
+   3. Click "Create API Key"
+   4. Copy the generated key
+   5. Open config/config.json
+   6. Paste key in "GEMINI_API" field
+
+   OpenAI API (Optional alternative)
+   ---------------------------------
+   1. Visit: https://platform.openai.com/api-keys
+   2. Sign in or create account
+   3. Click "Create new secret key"
+   4. Copy the generated key
+   5. Open config/config.json
+   6. Paste key in "OPENAI_API" field
+
+   Note: You only need ONE AI API (either Gemini or OpenAI)
+
+5. RUNNING THE APPLICATION
+
+   GUI Mode (Recommended)
+   ----------------------
+   python main.py
+
+   Command Line Mode
+   -----------------
+   python jarvis_core.py
+
+6. FIRST RUN CHECKLIST
+
+   [ ] Python 3.8+ installed
+   [ ] All dependencies installed (no import errors)
+   [ ] config/config.json exists with API key
+   [ ] Microphone connected and working
+   [ ] Speakers/headphones connected
+   [ ] Internet connection active
+
+7. TESTING YOUR SETUP
+
+   Test 1: Run setup script
+   ------------------------
+   python setup.py
+   - Should complete without errors
+   - All modules should import successfully
+
+   Test 2: Test speech recognition
+   -------------------------------
+   python -c "import speech_recognition as sr; print('Speech Recognition OK')"
+
+   Test 3: Test text-to-speech
+   ---------------------------
+   python -c "import pyttsx3; engine = pyttsx3.init(); engine.say('Test'); engine.runAndWait()"
+
+   Test 4: Launch GUI
+   ------------------
+   python main.py
+   - GUI window should appear
+   - Click "Listen Once" and speak a command
+   - Should recognize and respond
+
+8. COMMON ISSUES AND SOLUTIONS
+
+   Issue: "No module named 'pyaudio'"
+   Solution: Follow platform-specific PyAudio installation above
+
+   Issue: "Could not understand audio"
+   Solution:
+   - Check microphone connection
+   - Speak clearly and closer to microphone
+   - Reduce background noise
+   - Adjust energy_threshold in func/basic/listen.py
+
+   Issue: "API key not configured"
+   Solution:
+   - Open config/config.json
+   - Add your Gemini or OpenAI API key
+   - Save and restart application
+
+   Issue: "Camera not detected"
+   Solution:
+   - Check camera permissions in OS settings
+   - Try different camera index (0, 1, 2) in config/config.json
+   - Verify camera works in other applications
+
+   Issue: Text-to-speech not working
+   Solution:
+   - Check audio output device
+   - Try: pip install --upgrade pyttsx3
+   - Windows: Install SAPI5 voices
+   - Linux: Install espeak
+
+   Issue: Import errors for torch/easyocr
+   Solution:
+   - Install CPU version: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+   - EasyOCR will download models on first use (requires internet)
+
+9. OPTIONAL: ADVANCED CONFIGURATION
+
+   Adjust Voice Settings
+   ---------------------
+   Edit config/config.json:
+   - "voice_rate": 100-200 (speed of speech)
+   - "voice_volume": 0.0-1.0 (volume level)
+
+   Change Wake Word
+   ----------------
+   Edit config/config.json:
+   - "wake_word": "jarvis" (change to your preference)
+
+   Change Language
+   ---------------
+   Edit config/config.json:
+   - "language": "en-US" (en-GB, es-ES, fr-FR, etc.)
+
+   Camera Selection
+   ----------------
+   Edit config/config.json:
+   - "camera": "0" (try 1, 2, etc. if not working)
+
+10. GETTING HELP
+
+    Documentation: README.md
+    Module Documentation: Check docstrings in each .py file
+    Test Individual Components:
+    - python func/basic/listen.py
+    - python func/basic/speak.py
+    - python jarvis_core.py
+
+11. NEXT STEPS
+
+    After successful setup:
+    1. Launch the GUI: python main.py
+    2. Click "Help" button to see available commands
+    3. Try "Listen Once" for single commands
+    4. Enable "Start Listening" for continuous mode
+    5. Try "Conversation Mode" to skip wake word
+
+12. SYSTEM REQUIREMENTS
+
+    Minimum:
+    - CPU: Dual-core 2.0 GHz
+    - RAM: 4 GB
+    - Storage: 2 GB free space
+    - Microphone: Any USB or built-in mic
+    - Internet: For AI and web search features
+
+    Recommended:
+    - CPU: Quad-core 2.5 GHz+
+    - RAM: 8 GB+
+    - Storage: 5 GB free space (for OCR models)
+    - Microphone: Quality USB microphone
+    - Webcam: For vision features
+
+================================================================================
+For detailed usage instructions, see README.md
+For code documentation, check individual module files
+================================================================================
