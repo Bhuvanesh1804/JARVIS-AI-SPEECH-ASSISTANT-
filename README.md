@@ -12,14 +12,14 @@ It listens to voice commands, processes them, performs tasks, and replies throug
 | `requirements.txt` | Lists Python dependencies.                                                               |
 
 
-Some of the libraries used are  
+##    Some of the libraries used are  
 "PyQt5" -  GUI (buttons, labels, text area, thread-safe updates).
 "speech_recognition" -  Converts speech → text using Google Speech Recognition API (free, no API key needed).
 "pyttsx3" - Converts text → speech offline (no API key required).
 "wikipedia" - Fetches Wikipedia summaries.
 
 
-API keys -
+##    API keys -
 The project includes a .env file, which may optionally hold: OpenAI API key (for ChatGPT-like replies if extended)
 
 However, based on your main.py and standard jarvis_core.py setups:
@@ -28,7 +28,7 @@ pyttsx3 → offline, no API key.
 So, the core project can run fully offline, except for voice recognition (which uses Google’s free endpoint).
 
 
-Methodologies used here is 
+##    Methodologies used here is 
 
 "Rule-based NLP" - Matches commands based on keywords instead of AI model understanding.
 "Event-driven GUI" - PyQt5 events trigger actions (button clicks, thread signals).
@@ -38,7 +38,7 @@ Methodologies used here is
 "Hybrid Offline/Online"- Speech recognition uses the cloud; all other actions are local.
 
 
-Conclusion 
+##    Conclusion 
 
 Your JARVIS AI Speech Assistant is a hybrid offline/online, modular voice assistant built using Python + PyQt5.
 It applies:
