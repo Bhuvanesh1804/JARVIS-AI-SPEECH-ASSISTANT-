@@ -57,11 +57,11 @@ It’s a solid implementation of a lightweight AI assistant framework
 ##   commands 
 
 1. Create & activate a virtual environment
-cd C:\path\to\project\JARVIS-AI
+cd C:\path\to\project\JARVIS-AI - 
 python -m venv .venv
-activate
+activate - 
 .venv\Scripts\Activate.ps1
-or in cmd:
+or in cmd: 
 .venv\Scripts\activate.bat
 
 2. Install dependencies
@@ -91,5 +91,5 @@ cat > config/config.json <<'JSON'
 JSON
 
 4. Run the app from terminal (fast)
-   # activate venv if not already
+activate venv if not already
 python main.py
