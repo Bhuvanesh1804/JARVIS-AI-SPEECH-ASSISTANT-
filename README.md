@@ -52,3 +52,44 @@ Multithreading for smooth GUI performance
 Optional API integrations (if .env configured)
 
 It’s a solid implementation of a lightweight AI assistant framework
+
+
+##   commands 
+
+1. Create & activate a virtual environment
+cd C:\path\to\project\JARVIS-AI
+python -m venv .venv
+# activate
+.venv\Scripts\Activate.ps1
+# or in cmd:
+.venv\Scripts\activate.bat
+
+2. Install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+
+Notes / common fixes
+PyAudio often fails to build:
+Windows: use pipwin to install the prebuilt binary:
+
+pip install pipwin
+pipwin install pyaudio
+
+torch: requirements.txt pins torch==2.1.0 — if you have GPU and want CUDA builds, install the appropriate torch wheel from PyTorch site instead of the pinned CPU wheel:
+
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+
+3. Configuration (API keys, microphones, etc.)(created in seperate environment in config)
+
+mkdir -p config
+cat > config/config.json <<'JSON'
+{
+  "GEMINI_API": "",
+  "OPENAI_API_KEY": "",
+  "OTHER_SETTINGS": {}
+}
+JSON
+
+4. Run the app from terminal (fast)
+   # activate venv if not already
+python main.py
